@@ -14,22 +14,40 @@
             </div>
             <form id="prediction-form">
                 <div class="input-group">
-                    <label>Glucose (mg/dL)</label>
-                    <input type="number" placeholder="e.g. 120">
+                    <label>Pregnancies</label>
+                    <input type="number" id="pregnancies" value="0" required>
                 </div>
                 <div class="input-group">
-                    <label>BMI</label>
-                    <input type="number" step="0.1" placeholder="e.g. 28.5">
+                    <label>Glucose (mg/dL)</label>
+                    <input type="number" id="glucose" placeholder="e.g. 120" required>
+                </div>
+                <div class="input-group">
+                    <label>Blood Pressure (mm Hg)</label>
+                    <input type="number" id="bloodPressure" placeholder="e.g. 70" required>
+                </div>
+                <div class="input-group">
+                    <label>Skin Thickness (mm)</label>
+                    <input type="number" id="skinThickness" placeholder="e.g. 20" required>
                 </div>
                 <div class="input-group">
                     <label>Insulin (µIU/mL)</label>
-                    <input type="number" placeholder="e.g. 80">
+                    <input type="number" id="insulin" placeholder="e.g. 80" required>
+                </div>
+                <div class="input-group">
+                    <label>BMI</label>
+                    <input type="number" step="0.1" id="bmi" placeholder="e.g. 28.5" required>
+                </div>
+                <div class="input-group">
+                    <label>Pedigree Function</label>
+                    <input type="number" step="0.001" id="pedigree" value="0.471" required>
                 </div>
                 <div class="input-group">
                     <label>Age</label>
-                    <input type="number" placeholder="e.g. 30">
+                    <input type="number" id="age" placeholder="e.g. 30" required>
                 </div>
+
                 <button type="submit" class="predict-btn">Run Diagnosis</button>
+                <button type="button" class="clear-btn" onclick="clearForm()">Clear Inputs</button>
             </form>
         </aside>
 
@@ -39,26 +57,26 @@
             </header>
 
             <div class="dashboard-grid">
-                <div class="card result-card healthy">
+                <div class="card result-card" id="result-container">
                     <h4>Diagnostic Verdict</h4>
-                    <h1 id="verdict">Healthy</h1>
-                    <p>The AI model predicts a low risk of diabetes.</p>
+                    <h1 id="verdict">---</h1>
+                    <p id="verdict-description">Enter patient data and click "Run Diagnosis" to begin.</p>
                 </div>
 
                 <div class="card confidence-card">
                     <h4>Model Certainty</h4>
                     <div class="gauge-container">
-                        <div class="gauge-fill" style="width: 99.8%;"></div>
+                        <div class="gauge-fill" id="gauge-fill" style="width: 0%;"></div>
                     </div>
-                    <p>99.81% Confidence</p>
+                    <p id="confidence-text">Waiting for input...</p>
                 </div>
 
                 <div class="card info-card">
-                    <h4>Why this result?</h4>
-                    <ul>
-                        <li>Glucose levels are within optimal range.</li>
-                        <li>BMI indicates healthy body mass index.</li>
-                        <li>Insulin distribution matches non-diabetic profile.</li>
+                    <h4>System Status</h4>
+                    <p>Connected to <strong>XGBoost</strong> model via Python Flask Backend.</p>
+                    <ul style="margin-top: 15px; padding-left: 20px;">
+                        <li>Model Accuracy: 74.68%</li>
+                        <li>Data Context: Biologically Sane Pima Dataset</li>
                     </ul>
                 </div>
             </div>
@@ -68,5 +86,7 @@
             </footer>
         </main>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
