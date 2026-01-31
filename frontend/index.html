@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes AI - Medical Diagnostics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Diabetes<span>AI</span></h2>
+            </div>
+            <form id="prediction-form">
+                <div class="input-group">
+                    <label>Glucose (mg/dL)</label>
+                    <input type="number" placeholder="e.g. 120">
+                </div>
+                <div class="input-group">
+                    <label>BMI</label>
+                    <input type="number" step="0.1" placeholder="e.g. 28.5">
+                </div>
+                <div class="input-group">
+                    <label>Insulin (µIU/mL)</label>
+                    <input type="number" placeholder="e.g. 80">
+                </div>
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number" placeholder="e.g. 30">
+                </div>
+                <button type="submit" class="predict-btn">Run Diagnosis</button>
+            </form>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h3>Patient Diagnostic Dashboard</h3>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="card result-card healthy">
+                    <h4>Diagnostic Verdict</h4>
+                    <h1 id="verdict">Healthy</h1>
+                    <p>The AI model predicts a low risk of diabetes.</p>
+                </div>
+
+                <div class="card confidence-card">
+                    <h4>Model Certainty</h4>
+                    <div class="gauge-container">
+                        <div class="gauge-fill" style="width: 99.8%;"></div>
+                    </div>
+                    <p>99.81% Confidence</p>
+                </div>
+
+                <div class="card info-card">
+                    <h4>Why this result?</h4>
+                    <ul>
+                        <li>Glucose levels are within optimal range.</li>
+                        <li>BMI indicates healthy body mass index.</li>
+                        <li>Insulin distribution matches non-diabetic profile.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <footer class="disclaimer">
+                <p>Disclaimer: This is an AI research tool for the LVL 300 Project. Consult a doctor for medical advice.</p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
