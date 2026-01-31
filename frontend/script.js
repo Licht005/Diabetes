@@ -1,21 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('prediction-form');
-    const verdictText = document.getElementById('verdict');
-    const confidenceFill = document.querySelector('.gauge-fill');
-    const confidenceText = document.getElementById('confidence-text');
-
+    
     form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // STOP page refresh
 
-        // Collect values from the form
-        const formData = {
-            pregnancies: document.getElementById('pregnancies').value || 0,
+        // Grab current values from the inputs
+        const payload = {
+            pregnancies: document.getElementById('pregnancies').value,
             glucose: document.getElementById('glucose').value,
             bloodPressure: document.getElementById('bloodPressure').value,
             skinThickness: document.getElementById('skinThickness').value,
             insulin: document.getElementById('insulin').value,
             bmi: document.getElementById('bmi').value,
-            pedigree: document.getElementById('pedigree').value || 0.5,
+            pedigree: document.getElementById('pedigree').value,
             age: document.getElementById('age').value
         };
 
@@ -23,30 +20,34 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('http://127.0.0.1:5000/predict', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(payload)
             });
 
             const result = await response.json();
 
-            // Update UI with REAL data
+            // Update Verdict UI
+            const verdictEl = document.getElementById('verdict');
             const isDiabetic = result.prediction === 1;
-            verdictText.innerText = isDiabetic ? "Diabetic" : "Healthy";
-            verdictText.style.color = isDiabetic ? "#e74c3c" : "#27ae60";
             
+            verdictEl.innerText = isDiabetic ? "Diabetic" : "Healthy";
+            verdictEl.style.color = isDiabetic ? "#e74c3c" : "#27ae60";
+
+            // Update Confidence UI
             const probPercent = (result.probability * 100).toFixed(2);
-            confidenceFill.style.width = `${probPercent}%`;
-            confidenceText.innerText = `${probPercent}% Confidence`;
+            document.getElementById('gauge-fill').style.width = `${probPercent}%`;
+            document.getElementById('confidence-text').innerText = `${probPercent}% Confidence`;
 
         } catch (error) {
-            console.error("Error connecting to Python backend:", error);
-            alert("Make sure your Python Flask server is running!");
+            console.error("Connection Failed:", error);
+            alert("Ensure app.py is running in your terminal!");
         }
     });
 
+    // Clear Button Logic
     window.clearForm = () => {
         form.reset();
-        verdictText.innerText = "---";
-        confidenceFill.style.width = "0%";
-        confidenceText.innerText = "0% Confidence";
+        document.getElementById('verdict').innerText = "---";
+        document.getElementById('gauge-fill').style.width = "0%";
+        document.getElementById('confidence-text').innerText = "Waiting for input...";
     };
 });
