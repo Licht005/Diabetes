@@ -1,0 +1,25 @@
+# --- Python & Environment ---
+# Ignore your conda/pip environment folder
+pytorch_env/
+__pycache__/
+*.py[cod]
+
+# --- Jupyter Notebooks ---
+# Ignore the hidden checkpoints folder created by VS Code/Jupyter
+.ipynb_checkpoints/
+
+# --- Machine Learning Models ---
+# In case you decide to save your trained rf, lr, or xgb models
+*.pkl
+*.joblib
+*.pth
+models/
+
+# --- OS & IDE Specific ---
+.DS_Store
+.vscode/
+Thumbs.db
+
+# --- Project Specific ---
+# Usually, we keep requirements.txt, but if it's a temporary local file:
+# requirements.txt
