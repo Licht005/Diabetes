@@ -11,14 +11,22 @@
         <aside class="sidebar">
             <div class="logo"><h2>Diabetes<span>AI</span></h2></div>
             <form id="prediction-form">
-                <div class="input-group"><label>Pregnancies</label><input type="number" id="pregnancies" value="0" required></div>
-                <div class="input-group"><label>Glucose (mg/dL)</label><input type="number" id="glucose" placeholder="e.g. 120" required></div>
-                <div class="input-group"><label>Blood Pressure</label><input type="number" id="bloodPressure" placeholder="e.g. 70" required></div>
-                <div class="input-group"><label>Skin Thickness</label><input type="number" id="skinThickness" placeholder="e.g. 20" required></div>
-                <div class="input-group"><label>Insulin (µIU/mL)</label><input type="number" id="insulin" placeholder="e.g. 80" required></div>
-                <div class="input-group"><label>BMI</label><input type="number" step="0.1" id="bmi" placeholder="e.g. 28.5" required></div>
-                <div class="input-group"><label>Pedigree Function</label><input type="number" step="0.001" id="pedigree" value="0.471" required></div>
-                <div class="input-group"><label>Age</label><input type="number" id="age" placeholder="e.g. 30" required></div>
+                <div class="input-group">
+                    <label>Glucose (mg/dL)</label>
+                    <input type="number" id="glucose" placeholder="e.g. 120" required>
+                </div>
+                <div class="input-group">
+                    <label>Insulin (µIU/mL)</label>
+                    <input type="number" id="insulin" placeholder="e.g. 80" required>
+                </div>
+                <div class="input-group">
+                    <label>BMI</label>
+                    <input type="number" step="0.1" id="bmi" placeholder="e.g. 28.5" required>
+                </div>
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number" id="age" placeholder="e.g. 30" required>
+                </div>
 
                 <button type="submit" class="predict-btn">Run Diagnosis</button> 
             </form>
@@ -38,9 +46,10 @@
                     <p id="confidence-text">Waiting for input...</p>
                 </div>
             </div>
-            <footer class="disclaimer"><p>Educational Purpose Only - Lucas K. Woedem</p></footer>
-                            <button type="button" class="clear-btn" id="clear-btn">Clear Inputs</button>
-
+            <footer class="disclaimer">
+                <p>Educational Purpose Only - Lucas K. Woedem</p>
+                <button type="button" class="clear-btn" id="clear-btn">Clear Inputs</button>
+            </footer>
         </main>
     </div>
     <script src="script.js"></script>
