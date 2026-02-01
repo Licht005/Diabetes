@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('prediction-form');
-    const clearBtn = document.getElementById('clear-btn');
 
     form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Prevents values from vanishing
+        e.preventDefault();
 
-        // 1. Capture CURRENT values from the inputs
         const payload = {
             pregnancies: document.getElementById('pregnancies').value,
             glucose: document.getElementById('glucose').value,
@@ -18,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            // 2. Call the Python API
             const response = await fetch('http://127.0.0.1:5000/predict', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -27,7 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await response.json();
 
-            // 3. Update the Page with REAL results
+            // Handle validation errors from Python
+            if (!response.ok) {
+                alert(data.error);
+                return;
+            }
+
+            // Update UI with REAL results
             const isDiabetic = data.prediction === 1;
             const prob = (data.probability * 100).toFixed(2);
 
@@ -37,16 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('gauge-fill').style.width = `${prob}%`;
             document.getElementById('confidence-text').innerText = `${prob}% Confidence`;
-            document.getElementById('verdict-desc').innerText = isDiabetic ? 
-                "Profile indicates high diabetes risk." : "Profile indicates low diabetes risk.";
 
         } catch (err) {
-            alert("Error: Ensure app.py is running!");
-            console.error(err);
+            console.error("Connection error:", err);
+            alert("Ensure the Python backend (app.py) is running.");
         }
     });
 
-    clearBtn.addEventListener('click', () => {
+    document.getElementById('clear-btn').addEventListener('click', () => {
         form.reset();
         document.getElementById('verdict').innerText = "---";
         document.getElementById('gauge-fill').style.width = "0%";
