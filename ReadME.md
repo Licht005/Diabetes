@@ -1,7 +1,5 @@
 # Diabetes Risk Diagnostic Tool
 
-**Lucas K. Woedem** *Department of Robotics & AI* *Project Repository: LVL 300 (Application of AI) Project*
-
 ## Project Overview
 
 This project implements a full-stack machine learning application designed to predict the risk of diabetes in patients based on clinical data. The system utilizes a K-Nearest Neighbors (KNN) classification model trained on a refined version of the Pima Indians Diabetes Dataset. The application consists of a Python Flask backend for model inference and a responsive HTML/CSS/JavaScript frontend for data input and visualization.
@@ -16,7 +14,7 @@ The application follows a standard client-server architecture:
 
 ## Machine Learning Pipeline
 
-Based on the refined analysis in the `Diabetes_prediction (1).ipynb` notebook, the following steps were taken to ensure model accuracy and biological sanity:
+Based on the refined analysis in the `Diabetes_prediction.ipynb` notebook, the following steps were taken to ensure model accuracy and biological sanity:
 
 ### 1. Feature Engineering and Selection
 
