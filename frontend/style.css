@@ -48,6 +48,18 @@ body { background-color: var(--bg-light); color: var(--text-dark); }
 
 .predict-btn:hover { background: #0056b3; }
 
+.clear-btn {
+    width: 25%;
+    padding: 10px;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
 /* Main Content Area */
 .main-content { flex: 1; padding: 40px; overflow-y: auto; }
 
