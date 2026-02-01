@@ -5,49 +5,62 @@ import pandas as pd
 import numpy as np
 
 app = Flask(__name__)
-CORS(app) # Necessary to allow the browser to communicate with Python
+CORS(app)
 
-# Load your saved artifacts
+# Load your model and scaler
 try:
     model = joblib.load('xgboost.joblib')
     scaler = joblib.load('scaler.joblib')
     print("--- Model & Scaler Successfully Loaded ---")
 except Exception as e:
-    print(f"CRITICAL ERROR: Could not load model/scaler. {e}")
+    print(f"CRITICAL ERROR: {e}")
+
+def validate_input(data):
+    """Checks if inputs are within biologically plausible ranges."""
+    # Logic: If Glucose > 500 or BMI > 100, etc., return False
+    ranges = {
+        'glucose': (20, 500),
+        'bloodPressure': (20, 250),
+        'bmi': (10, 100),
+        'age': (1, 120),
+        'insulin': (0, 900)
+    }
+    for key, (low, high) in ranges.items():
+        val = float(data[key])
+        if val < low or val > high:
+            return False, f"Invalid value for {key}: {val}. Please enter realistic data."
+    return True, None
 
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
         data = request.get_json()
-        
-        # DEBUG: Check your VS Code terminal to see if these numbers match what you typed!
-        print(f"Received from Web: {data}")
+        print(f"Data Received: {data}")
 
-        # Construct DataFrame in the exact order the model was trained
+        # 1. Validate the data first
+        is_valid, error_msg = validate_input(data)
+        if not is_valid:
+            return jsonify({'error': error_msg}), 400
+
+        # 2. Construct DataFrame
         features = pd.DataFrame([[
-            float(data['pregnancies']),
-            float(data['glucose']),
-            float(data['bloodPressure']),
-            float(data['skinThickness']),
-            float(data['insulin']),
-            float(data['bmi']),
-            float(data['pedigree']),
-            float(data['age'])
+            float(data['pregnancies']), float(data['glucose']), 
+            float(data['bloodPressure']), float(data['skinThickness']), 
+            float(data['insulin']), float(data['bmi']), 
+            float(data['pedigree']), float(data['age'])
         ]], columns=['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 
                      'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age'])
 
-        # Preprocessing & Inference
+        # 3. Inference
         features_scaled = scaler.transform(features)
         prediction = model.predict(features_scaled)[0]
         probability = model.predict_proba(features_scaled)[0]
 
-        # Send real result back
         return jsonify({
             'prediction': int(prediction),
             'probability': float(max(probability))
         })
     except Exception as e:
-        print(f"Prediction Error: {e}")
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
