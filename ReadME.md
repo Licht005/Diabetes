@@ -49,7 +49,7 @@ To ensure the robustness of the application, the backend includes a validation l
 
 ### Execution
 
-1. **Model Persistence**: Run the final cells of the `Diabetes_prediction (1).ipynb` notebook to generate `Diabetesmodel.pkl` and `scaler.pkl`.
+1. **Model Persistence**: Run the final cells of the `Diabetes_prediction.ipynb` notebook to generate `Diabetesmodel.pkl` and `scaler.pkl`.
 2. **Start Backend**: Run `python app.py` to initialize the Flask server.
 3. **Launch Frontend**: Open `index.html` in a web browser to access the diagnostic dashboard.
 
