@@ -1,7 +1,3 @@
-To finalize your **LVL 300 (Application of AI) Project**, your `ReadME.md` should serve as a technical summary that explains your transition to a 4-feature KNN model and how the full-stack system is integrated.
-
----
-
 # Diabetes Risk Diagnostic Tool
 
 **Lucas K. Woedem** *Department of Robotics & AI* *Project Repository: LVL 300 (Application of AI) Project*
