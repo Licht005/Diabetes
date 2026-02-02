@@ -21,6 +21,5 @@ models/
 Thumbs.db
 
 # --- Project Specific ---
-# Usually, we keep requirements.txt, but if it's a temporary local file:
 # requirements.txt
 notebook.ipynb
