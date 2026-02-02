@@ -51,7 +51,6 @@ def predict():
         features_scaled = scaler.transform(features)
         prediction = model.predict(features_scaled)[0]
         
-        # Note: KNN probability depends on neighbor voting
         try:
             probability = max(model.predict_proba(features_scaled)[0])
         except:
