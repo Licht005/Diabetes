@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (err) {
             console.error("Connection error:", err);
-            alert("Ensure your Python backend is running.");
+            alert("Ensure your Python backend (app.py) is running.");
         }
     });
 
