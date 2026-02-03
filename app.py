@@ -6,7 +6,7 @@ import numpy as np
 app = Flask(__name__)
 CORS(app)
 
-# Load the new 4-feature model and scaler
+# Load the 4-feature model and scaler
 try:
     model = pickle.load(open('Diabetesmodel.pkl', 'rb'))
     scaler = pickle.load(open('scaler.pkl', 'rb'))
