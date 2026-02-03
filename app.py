@@ -39,7 +39,7 @@ def predict():
             return jsonify({'error': error_msg}), 400
 
         # 2. Process only the 4 features: Glucose, Insulin, BMI, Age
-        # Features must be in the exact order: [Glucose, Insulin, BMI, Age]
+        # order to take note of: [Glucose, Insulin, BMI, Age]
         features = np.array([[
             float(data['glucose']),
             float(data['insulin']),
