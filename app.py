@@ -17,9 +17,9 @@ except Exception as e:
 def validate_input(data):
     """Validation for the 4 specific features used in the new notebook."""
     ranges = {
-        'glucose': (20, 500),
+        'glucose': (20, 200),
         'insulin': (0, 850),
-        'bmi': (10, 100),
+        'bmi': (10, 75),
         'age': (1, 120)
     }
     for key, (low, high) in ranges.items():
