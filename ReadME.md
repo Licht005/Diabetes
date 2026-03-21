@@ -47,7 +47,7 @@ To ensure the robustness of the application, the backend includes a validation l
 * Flask and Flask-CORS
 * Scikit-learn, Pandas, and NumPy
 
-### Execution
+### Execution steps
 
 1. **Model Persistence**: Run the final cells of the `Diabetes_prediction.ipynb` notebook to generate `Diabetesmodel.pkl` and `scaler.pkl`.
 2. **Start Backend**: Run `python app.py` to initialize the Flask server.
@@ -55,5 +55,5 @@ To ensure the robustness of the application, the backend includes a validation l
 
 ## Disclaimer
 
-This tool is developed for educational purposes as part of the LVL 300 Application of AI course. It is not a substitute for professional medical diagnosis or consultation.
+This tool is developed for educational purposes as part of the LVL 300 "Application of AI" course. It is not a substitute for professional medical diagnosis or consultation.
 
