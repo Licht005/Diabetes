@@ -53,7 +53,4 @@ To ensure the robustness of the application, the backend includes a validation l
 2. **Start Backend**: Run `python app.py` to initialize the Flask server.
 3. **Launch Frontend**: Open `index.html` in a web browser to access the diagnostic dashboard.
 
-## Disclaimer
-
-This tool is developed for educational purposes as part of the LVL 300 "Application of AI" course. It is not a substitute for professional medical diagnosis or consultation.
 
